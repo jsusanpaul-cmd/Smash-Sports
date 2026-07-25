@@ -144,8 +144,16 @@
     .field label{white-space:normal; line-height:1.35; display:block;}
     .field{gap:8px;}
     .stat-row{grid-template-columns:1fr;}
-    table{font-size:12.5px;}
-    th:nth-child(n+5):not(:last-child), td:nth-child(n+5):not(:last-child){display:none;}
+    table{border-collapse:separate; border-spacing:0;}
+    thead{display:none;}
+    tbody, tr, td{display:block; width:100%;}
+    tr{background:var(--panel-2); border:1px solid var(--line-strong); border-radius:10px; margin-bottom:12px; padding:4px 14px;}
+    td{border-bottom:1px solid var(--line); padding:9px 0; display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:13.5px; text-align:right;}
+    td:last-child{border-bottom:none;}
+    td::before{content:attr(data-label); color:var(--muted); font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; flex-shrink:0; text-align:left;}
+    td.actions-cell{justify-content:flex-end; padding:11px 0;}
+    td.actions-cell::before{content:none;}
+    tr:hover td{background:transparent;}
     .bars{gap:14px;}
     .pie-row{justify-content:center;}
     #downloadPdfBtn{margin-left:0; width:100%;}
@@ -482,9 +490,9 @@
     const sorted = [...bills].sort((a,b)=> b.date.localeCompare(a.date));
     body.innerHTML = sorted.map(b=>`
       <tr>
-        <td>${b.date}</td><td>${b.category}</td><td>${b.item}</td><td>${b.qty}</td>
-        <td>${fmt(b.unitCost)}</td><td>${fmt(b.total)}</td>
-        <td><div class="row-actions">
+        <td data-label="Date">${b.date}</td><td data-label="Category">${b.category}</td><td data-label="Item">${b.item}</td><td data-label="Qty">${b.qty}</td>
+        <td data-label="Unit cost">${fmt(b.unitCost)}</td><td data-label="Total">${fmt(b.total)}</td>
+        <td class="actions-cell"><div class="row-actions">
           <button data-id="${b.id}" class="editBill">Edit</button>
           <button data-id="${b.id}" class="del delBill">Delete</button>
         </div></td>
@@ -573,8 +581,8 @@
     const sorted = [...sales].sort((a,b)=> b.date.localeCompare(a.date));
     body.innerHTML = sorted.map(s=>`
       <tr>
-        <td>${s.date}</td><td>${s.string}</td><td>${s.no}</td><td>${fmt(s.paid)}</td>
-        <td><div class="row-actions">
+        <td data-label="Date">${s.date}</td><td data-label="String">${s.string}</td><td data-label="No.">${s.no}</td><td data-label="Paid">${fmt(s.paid)}</td>
+        <td class="actions-cell"><div class="row-actions">
           <button data-id="${s.id}" class="editSale">Edit</button>
           <button data-id="${s.id}" class="del delSale">Delete</button>
         </div></td>
@@ -748,12 +756,12 @@
 
     const repSalesBody = document.getElementById('repSalesBody');
     const sortedPS = [...periodSales].sort((a,b)=>b.date.localeCompare(a.date));
-    repSalesBody.innerHTML = sortedPS.map(s=>`<tr><td>${s.date}</td><td>${s.string}</td><td>${s.no}</td><td>${fmt(s.paid)}</td></tr>`).join('');
+    repSalesBody.innerHTML = sortedPS.map(s=>`<tr><td data-label="Date">${s.date}</td><td data-label="String">${s.string}</td><td data-label="No.">${s.no}</td><td data-label="Paid">${fmt(s.paid)}</td></tr>`).join('');
     document.getElementById('repSalesEmpty').style.display = periodSales.length? 'none':'block';
 
     const repBillsBody = document.getElementById('repBillsBody');
     const sortedPB = [...periodBills].sort((a,b)=>b.date.localeCompare(a.date));
-    repBillsBody.innerHTML = sortedPB.map(b=>`<tr><td>${b.date}</td><td>${b.category}</td><td>${b.item}</td><td>${b.qty}</td><td>${fmt(b.total)}</td></tr>`).join('');
+    repBillsBody.innerHTML = sortedPB.map(b=>`<tr><td data-label="Date">${b.date}</td><td data-label="Category">${b.category}</td><td data-label="Item">${b.item}</td><td data-label="Qty">${b.qty}</td><td data-label="Total">${fmt(b.total)}</td></tr>`).join('');
     document.getElementById('repBillsEmpty').style.display = periodBills.length? 'none':'block';
   }
 
