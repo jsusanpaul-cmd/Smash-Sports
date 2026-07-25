@@ -158,6 +158,67 @@
     .pie-row{justify-content:center;}
     #downloadPdfBtn{margin-left:0; width:100%;}
   }
+
+  /* ===== Phone-specific sizing (≤480px) ===== */
+  @media (max-width: 480px){
+    .app{padding:16px 14px 90px;}
+
+    .topbar{margin-bottom:18px; gap:12px;}
+    .logo{font-size:19px;}
+    .logo small{font-size:9.5px;}
+
+    .tabs{width:100%; padding:4px;}
+    .tab-btn{flex:1; padding:12px 8px; font-size:12.5px; min-height:44px;}
+
+    #exportExcelBtn, #backupBtn, #restoreBtn{width:100%; min-height:46px; font-size:13.5px;}
+    .topbar > div[style]{width:100%; flex-direction:column;}
+
+    .stat-row{gap:10px; margin-bottom:18px;}
+    .stat-card{padding:16px; display:flex; align-items:center; justify-content:space-between;}
+    .stat-card .k{margin-bottom:0;}
+    .stat-card .v{font-size:20px;}
+
+    .panel{padding:16px; border-radius:12px; margin-bottom:16px;}
+    .panel h3{font-size:17px; margin-bottom:14px;}
+
+    /* Single-column form: one field per row, full width, thumb-sized */
+    .form-grid{grid-template-columns:1fr; row-gap:14px; column-gap:0;}
+    .field label{font-size:12px; margin-bottom:2px;}
+    .field input, .field select{
+      min-height:48px; font-size:16px; padding:12px 14px; border-radius:10px;
+    }
+    .field.readonly input{font-size:16px;}
+
+    div[style*="margin-top:16px"]{flex-direction:column;}
+    .btn, .btn-secondary{min-height:48px; padding:13px 18px; font-size:15px; width:100%;}
+
+    table{margin-top:2px;}
+    tr{padding:2px 12px; margin-bottom:10px; border-radius:10px;}
+    td{font-size:13px; padding:10px 0;}
+    td::before{font-size:10px;}
+    .row-actions{gap:16px;}
+    .row-actions button{font-size:13px; padding:6px 4px; min-height:32px;}
+
+    .period-bar{gap:10px;}
+    .period-toggle{width:100%; justify-content:center;}
+    .period-btn{flex:1; text-align:center; padding:10px 6px; min-height:40px;}
+    .period-nav{margin-left:0; width:100%; justify-content:center;}
+    .period-nav button{width:40px; height:40px; font-size:18px;}
+    .period-label{min-width:0; flex:1;}
+
+    .bars{height:150px; gap:10px; padding:14px 4px 0;}
+    .bar-label{font-size:10px;}
+    .bar-value{font-size:12px;}
+
+    .pie-row{gap:20px;}
+    .donut-wrap{width:160px; height:160px;}
+    .donut-wrap svg{width:160px; height:160px;}
+    .donut-center .dc-value{font-size:16px;}
+    .pie-legend{min-width:0; width:100%;}
+
+    .danger-zone{flex-direction:column; align-items:flex-start; gap:10px;}
+    .danger-zone button{min-height:44px;}
+  }
 </style>
 </head>
 <body>
